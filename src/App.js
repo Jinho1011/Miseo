@@ -10,10 +10,13 @@ class App extends Component {
   }
 
   getGeolocation = () => {
+    var coord
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         position => {
-          this.getPosition(position.coords.latitude, position.coords.longitude);
+          coord.lat = position.coords.latitude
+          coord.long = position.coords.longitude
         },
         error => {
           console.error(error);
@@ -25,19 +28,23 @@ class App extends Component {
         }
       );
     }
+
+    return coord
   };
 
-  getPosition = async (lat, lng) => {
-    const FETCH_URL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyCZVEs9_xdPkB7tK1buJKkWjZo_Sqy5MbE`
-    var city = await fetch(FETCH_URL)
-      .then(res => res.json())
-      .catch(err => console.log('TCL: App -> getPosition -> err', err))
-    //8XX9+HQ 대한민국 경기도 의왕시
-    city = city.plus_code.compound_code.split(' ');
-    city = city[city.length-1]
-		console.log('TCL: App -> getPosition -> city', city)
-    return city
-  };
+  // KaKao API를 이용하면 되서 필요가 없어졌음ㅋ
+
+  // getPosition = async (lat, lng) => {
+  //   const FETCH_URL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyCZVEs9_xdPkB7tK1buJKkWjZo_Sqy5MbE`
+  //   var city = await fetch(FETCH_URL)
+  //     .then(res => res.json())
+  //     .catch(err => console.log('TCL: App -> getPosition -> err', err))
+  //   //8XX9+HQ 대한민국 경기도 의왕시
+  //   city = city.plus_code.compound_code.split(' ');
+  //   city = city[city.length-1]
+  // 	console.log('TCL: App -> getPosition -> city', city)
+  //   return city
+  // };
 
   render() {
     // const { dust } = this.state;
