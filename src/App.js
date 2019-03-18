@@ -6,12 +6,14 @@ class App extends Component {
   state = {};
 
   componentDidMount() {
-    this.getGeolocation()
+    var coord = this.getGeolocation()
+    console.log('TCL: App -> componentDidMount -> coord', coord)
+    
+    this.getTMcoord(coord)
   }
 
   getGeolocation = () => {
-    var coord
-
+    var coord = {}
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         position => {
@@ -28,9 +30,17 @@ class App extends Component {
         }
       );
     }
-
+    
+		console.log('TCL: App -> getGeolocation -> coord', coord)
     return coord
   };
+
+  getTMcoord = async (coord) => {
+    console.log('TCL: App -> getTMcoord -> coord', coord)
+    var lat = await coord.lat
+		console.log('TCL: App -> getTMcoord -> lat', lat)
+    
+  }
 
   // KaKao API를 이용하면 되서 필요가 없어졌음ㅋ
 
