@@ -4,7 +4,7 @@ import "./location.css";
 function Location() {
   return (
     <div>
-        <h1></h1>
+        <h1>HELLO THIS IS FOR TEST</h1>
     </div>
   );
 }
