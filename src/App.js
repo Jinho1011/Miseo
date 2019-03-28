@@ -8,7 +8,9 @@ const AIRKOREA_API_KEY =
   "Nc7DTt1ImQ%2F8JdDmOz0qZQYcbstlIitpt9a6btKCSY1vud%2FvhzZ%2BM2QR4uWjW58IFJ8JWzJ7w9osVarTAn1iSg%3D%3D";
 
 class App extends Component {
-  state = {};
+  state = {
+    serviceReady: 0
+  };
 
   componentDidMount() {
     this.getDistrict();
@@ -60,6 +62,35 @@ class App extends Component {
         var item = res.getElementsByTagName("item")[0].getElementsByTagName("stationName")[0].innerHTML
         console.log("TCL: item", item)
         // getting monitoring station done
+        this.getDustInformation(item)
+      })
+  }
+
+  getDustInformation = station => {
+    const API_URL = `http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?serviceKey=${AIRKOREA_API_KEY}&numOfRows=10&pageNo=1&stationName=${station}&dataTerm=DAILY&ver=1.3`
+    console.log("TCL: API_URL", API_URL)
+    const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+
+    fetch(PROXY_URL + API_URL)
+      .then(res => res.text())
+      .then(res => new DOMParser().parseFromString(res, "text/xml"))
+      .then(res => {
+        return res.getElementsByTagName("item")[0]
+      })
+      .then(res => {
+				console.log("TCL: res", res)
+        var pm10Value = res.getElementsByTagName("pm10Value")[0].innerHTML
+				console.log("TCL: pm10Value", pm10Value)
+        var pm25Value = res.getElementsByTagName("pm25Value")[0].innerHTML
+				console.log("TCL: pm25Value", pm25Value)
+        var pm10Value24 = res.getElementsByTagName("pm10Value24")[0].innerHTML
+				console.log("TCL: pm10Value24", pm10Value24)
+        var pm25Value24 = res.getElementsByTagName("pm25Value24")[0].innerHTML
+				console.log("TCL: pm25Value24", pm25Value24)
+        var o3Value = res.getElementsByTagName("o3Value")[0].innerHTML
+        console.log("TCL: o3Value", o3Value)
+        
+        // GETTING DUST INFORMATION DONE
       })
   }
 
