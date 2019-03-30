@@ -1,3 +1,6 @@
-.App {
-  text-align: center;
+.location,
+.dust {
+  background: #f9f9f9;
+  height: 100vh;
+  padding: 50px;
 }

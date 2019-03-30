@@ -1,0 +1,33 @@
+.title-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.main-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main-wrapper {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 15px 19px 32px -18px rgba(21,19,19,.07);
+}
+
+.waiting-img img {
+    height: 40vh;
+}
+
+.waiting-title {
+    font-size: 20px !important;
+}

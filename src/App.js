@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-
 import "./App.css";
 import Location from "./location";
+import Dust from "./dust";
 
 const KAKAO_API_KEY = "KakaoAK c981c546d4e1806ac95ac294b40fc615";
 const AIRKOREA_API_KEY =
@@ -117,10 +117,27 @@ class App extends Component {
       .then(obj => obj.documents[0].address_name);
   };
 
+  renderDust = () => {
+    const dust = <Dust
+      pm10Value={this.state.dust.pm10Value}
+      pm25Value={this.state.dust.pm25Value}
+      pm10Value24={this.state.dust.pm10Value24}
+      pm25Value24={this.state.dust.pm25Value24}
+      o3Value={this.state.dust.o3Value}
+      district={this.state.district}
+    />
+    return dust
+  }
+
+  renderLocation = () => {
+    const location = <Location/>
+    return location
+  }
+
   render() {
     var isDustDone = this.state.serviceReady;
     return (
-      <div className={isDustDone ? "" : ""}>
+      <div className={isDustDone ? "dust" : "location"}>
         {isDustDone ? this.renderDust() : this.renderLocation()}
       </div>
     );
