@@ -2,7 +2,14 @@ import React from "react";
 import "./dust.css";
 import "./bulma.css";
 
-function Dust({ pm10Value, pm25Value, pm10Value24, pm25Value24, o3Value, district }) {
+function Dust({
+  pm10Value,
+  pm25Value,
+  pm10Value24,
+  pm25Value24,
+  o3Value,
+  district
+}) {
   return (
     <div className="container dust-container">
       <div className="title-section">
@@ -10,30 +17,42 @@ function Dust({ pm10Value, pm25Value, pm10Value24, pm25Value24, o3Value, distric
       </div>
       <div className="main-section">
         <div className="main-wrapper">
-          현재 {district} 미세먼지는..
-          <div className="dust-list">
-            <ul>
-              <li>
-                pm10 지수 :  {pm10Value}
-              </li>
-              <li>
-                pm25 지수 : {pm25Value}
-              </li>
-              <li>
-                pm10 지수 (24시간 기준) : {pm10Value24}
-              </li>
-              <li>
-                pm25 지수 (24시간 기준) : {pm25Value24}
-              </li>
-              <li>
-                오존 지수 : {o3Value}
-              </li>
-            </ul>
+          <div className="dust-title">
+            현재 <span className="dust-titls-district">{district}</span> 미세먼지는..
+            <DustInfo pm10Value={pm10Value} pm25Value={pm25Value} />
+          </div>
+        </div>
+        <div className="main-wrapper">
+          <div className="dust-info-list-wrapper">
+            <div className="dust-info-list-title">상세 정보</div>
+            <div className="dust-info-list">
+              <ul className="dust-info-ul">
+                <li>- pm10Value : {pm10Value}</li>
+                <li>- pm25Value : {pm25Value}</li>
+                <li>- pm10Value24 : {pm10Value24}</li>
+                <li>- pm25Value24 : {pm25Value24}</li>
+                <li>- o3Value : {o3Value}</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
+}
+
+function DustInfo({ pm10Value, pm25Value }) {
+  var sum = Number(pm10Value) + Number(pm25Value);
+  console.log("TCL: DustInfo -> sum", sum);
+  if (sum > 225) {
+    return <p className="dust-info-4">매우 나쁨</p>;
+  } else if (sum > 115) {
+    return <p className="dust-info-3">나쁨</p>;
+  } else if (sum > 35) {
+    return <p className="dust-info-2">보통</p>;
+  } else {
+    return <p className="dust-info-1">좋음</p>;
+  }
 }
 
 export default Dust;

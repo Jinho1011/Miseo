@@ -13,7 +13,7 @@ function Location() {
           <div className="waiting-img">
             <img src="/images/pluto-coming-soon.png" alt="" />
           </div>
-          <div className="waiting-title title">
+          <div className="waiting-title">
             미세먼지 정보를 가져오고 있습니다!
         </div>
         </div>
