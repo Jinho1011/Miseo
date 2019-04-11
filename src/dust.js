@@ -1,4 +1,5 @@
 import React from "react";
+import { FacebookProvider, Share } from 'react-facebook';
 import "./dust.css";
 import "./bulma.css";
 
@@ -34,6 +35,13 @@ function Dust({
                 <li>- o3Value : {o3Value}</li>
               </ul>
             </div>
+            <FacebookProvider appId="1106858336104667">
+              <Share href="http://www.facebook.com">
+                {({ handleClick }) => (
+                  <button className="facebook-share-btn" type="button" onClick={handleClick}>Share to Facebook</button>
+                )}
+              </Share>
+            </FacebookProvider>
           </div>
         </div>
       </div>

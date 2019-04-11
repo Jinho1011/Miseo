@@ -90,3 +90,20 @@
     font-size: 20px;
     padding-left: 15px;
 }
+
+.facebook-share-btn {
+    background: #fff;
+    color: #778beb;
+    padding: 10px 5px;
+    border-radius: 15px;
+    border: none;
+    font-family: 'Jua', sans-serif;
+    font-size: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.facebook-share-btn:hover {
+    box-shadow: 0 16px 36px 0 rgba(21,19,19,.15);
+    transition: .4s;
+}

@@ -2,7 +2,7 @@
   "name": "miseo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Jinho1011/github.io/miseo",
+  "homepage": "https://jinho1011.github.io/miseo/",
   "dependencies": {
     "axios": "^0.18.0",
     "react": "^16.8.4",
@@ -27,6 +27,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.0.1",
+    "react-facebook": "^8.0.4"
   }
 }
